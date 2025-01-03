@@ -1,0 +1,35 @@
+<%- include('../views/partials/header.ejs') %>
+<body>
+    <main>
+        <section>
+            <h1><a href="/" class="user-name">BUSA ADHARSH</a></h1>
+        </section>
+        <div class="add-new-book">
+            <h2>Add New Book</h2>
+            <form action="/newbook" method="post">
+                <!-- For getting title of the book-->
+                <div class="title">
+                    <label for="title">Title</label><br>
+                    <input type="text" name="title" id="title" required autocomplete="off" autofocus>
+                </div>
+                <!-- For getting rating of the book-->
+                <div class="rating">
+                    <label for="rating">Rating</label><br>
+                    <input type="number" name="rating" id="rating" required autocomplete="off" autofocus>
+                </div>
+                <!-- For getting overview of the book-->
+                <div class="overview">
+                    <label for="description">Description</label><br>
+                    <textarea name="description" id="description"></textarea>
+                </div>
+                <!-- For getting completion reading date of the book-->
+                <div class="completion-date">
+                    <label for="completionDate">Read Date</label><br>
+                    <input type="date" name="completionDate" required autofocus>
+                </div>
+                <input type="submit" value="That's it">
+            </form>
+        </div>
+    </main>
+</body>
+</html>
