@@ -14,7 +14,7 @@ h1{
     font-weight: 500;
 }
 a {
-    color: #000;
+    color: blue;
     text-decoration: none;
     position: relative;
 }
@@ -51,15 +51,25 @@ a[href="#"]:hover::before{
 .individualBook {
     margin-top: 100px;
 }
+.bookname, #bookname, #user-name{
+    color: #000;
+}
+.bookname{
+    text-decoration: underline;
+}
+.bookname:hover::before{
+    transform: scale(0);
+}
 img {
     float: left;
+    margin-right: 40px;
 }
 .individualBook a {
     font-size: 50px;
     padding: 20px;
     text-decoration: underline;
 }
-.individualBook a:hover::before{
+.individualBook a:hover::before, #booklink:hover::before{
     transform: scale(0);
 }
 
@@ -69,21 +79,17 @@ img {
     font-size: 20px;
 }
 .bookdetail {
-    font-size: 20px;
-    line-height: 2.5px;
-    margin-left: 200px;
+    font-size: 19px;
+    /* margin-left: 200px; */
     word-wrap: break-word;
-}
-#subject{
-    margin-left: 200px;
-}
-#description{
-    line-height: 15px;
-    margin-left: 200px;
 }
 #link{
     font-size: 25px;
 }
 #booklink{
+    color: blue;
     text-decoration: none;
+}
+.book{
+    margin-bottom: 100px;
 }

@@ -9,8 +9,8 @@
     </div>
     <div class="sort">
         <p>Sorted with my <strong>top recommendation.</strong> Sort by
-            <a href="#" name="title" id="title" onclick="onSort(event)">title</a>
-            <a href="#" name="newest" id="newest" onclick="onSort(event)">newest</a>
+            <a href="#" name="title" id="title" onclick="onSort(event)">title,</a>
+            <a href="#" name="newest" id="newest" onclick="onSort(event)">newest,</a>
             <a href="#" name="best" id="best" onclick="onSort(event)">best</a>
         </p>
     </div>
@@ -22,7 +22,7 @@
                 <% data.forEach(element =>{ %>
                     <div class="individualBook">
                         <input type="hidden" name="id" value="<%= element.id %>">
-                        <a href="/">
+                        <a href="/" id="bookname">
                             <img src="<%= element.image %>" alt="<%= element.book_name %>">
                             <%= element.book_name %>-
                             <%= element.author_name %>
@@ -31,7 +31,7 @@
                         <p class="bookdetail">Published Year: <%= element.publication_date %>&nbsp; Pages:<%= element.no_of_pages %></p>
                         <p id="subject"><%= element.subject %></p>
                         <p id="description"><%= element.description %></p>
-                        <p class="bookdetail link">For more information checkout here, <a href="https://www.google.com/search?q=<%= element.book_name  %>+<%= element.author_name %>" id="booklink" style="font-size: 20px; padding: 0;">Book</a></p>
+                        <p class="bookdetail link">For more information checkout here, <a href="https://www.google.com/search?q=<%= element.book_name  %>+<%= element.author_name %>" id="booklink" style="font-size: 19px; padding: 0;">Book</a></p>
                     </div>
                 <% }); %>
         <% } %>
@@ -66,18 +66,16 @@
                         bookElement.classList.add('book');
                         bookElement.innerHTML=`
                         <input type="hidden" name="id" value="${book.id}">
-                        <a>
-                            <img src="${book.image }" alt="${book.book_name }">
+                        <a class="bookname">
+                            <img src="${book.image }" alt="${book.book_name }" id="bookname">
                             ${book.book_name }-
                             ${book.author_name }
                         </a>
-                        <p>Completion Date: ${book.date_completed }</p>
-                        <p>How good I recommend: ${book.rating }</p>
-                        <p>Published Year: ${book.publication_date }</p>
-                        <p>Pages:${book.no_of_pages }</p>
-                        <p>${book.subject }</p>
+                        <p class="bookdetail">Completion Date: ${book.date_completed } &nbsp; How good I recommend: ${book.rating }</p>
+                        <p class="bookdetail">Published Year: ${new Date(book.publication_date ).toISOString().slice(0,10)} &nbsp; Pages:${book.no_of_pages }</p>
+                        <p id="subject">${book.subject }</p>
                         <p>${book.description }</p>
-                        <p><a href="https://www.google.com/search?q=${book.book_name  }+${book.author_name }">Book</a></p>
+                        <p class="bookdetail link">For more information checkout here, <a href="https://www.google.com/search?q=${book.book_name  }+${book.author_name }" id="booklink" style="font-size: 19px; padding: 0;">Book</a></p>
                         `;
                         booksContainer.appendChild(bookElement);
                     });

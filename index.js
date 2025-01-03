@@ -23,7 +23,6 @@ app.get("/", async (req, res) => {
         const result = await db.query("SELECT * FROM bookdetails ORDER BY rating DESC");
         // console.log(result.rows);
         const books = result.rows;
-        console.log(books[0].date_completed);
         res.render("index.ejs",{data:books})
     }catch(error){
         res.render("index.ejs",{err:error})
