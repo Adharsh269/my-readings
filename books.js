@@ -34,13 +34,12 @@ app.post("/newbook", async (req, res) => {
             completionDate : req.body.completionDate
         };
         const result = await axios.get(`https://openlibrary.org/search.json?q=${bookDetails.title}`);
-        const firstDoc = result.data.docs[0]
+        const firstDoc = result.data.docs[1]
         if(!firstDoc || bookDetails.title !== firstDoc.title) {
             return res.json({success : false, message : "Book not found"});
         }
         const details = {
             title : firstDoc.title,
-            author : firstDoc.author_name,
             published_year : firstDoc.publish_year[0],
             noOfPages : firstDoc.number_of_pages_median,
             subject : firstDoc.subject?
@@ -50,12 +49,12 @@ app.post("/newbook", async (req, res) => {
             review : `www.google.com/search?q=${firstDoc.title}+${firstDoc.author_name}`,
             image : `https://covers.openlibrary.org/b/olid/${firstDoc.cover_edition_key}-M.jpg`
         }
-        const query = await db.query("INSERT INTO bookdetails (book_name, author_name, rating, description, date_completed, book_reviews, publication_date, no_of_pages, subject, image) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)",
-            [details.title, details.author,bookDetails.rating, bookDetails.description, bookDetails.completionDate, 
+        await db.query("INSERT INTO bookdetails (book_name, author_name, rating, description, date_completed, book_reviews, publication_date, no_of_pages, subject, image) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)",
+            [details.title, bookDetails.author,bookDetails.rating, bookDetails.description, bookDetails.completionDate, 
                 details.review, details.published_year, details.noOfPages,
                 details.subject.join(', '),
                 details.image
-            ]
+            ]   
         );
         res.redirect("/");
     }catch(error) {

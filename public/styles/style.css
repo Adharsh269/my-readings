@@ -21,6 +21,9 @@ a {
 p{
     line-height: 30px;
 }
+.user-name{
+    color: #000;
+}
 #user-name::before{
     content: '';
     background-color: #000;
